@@ -1,4 +1,5 @@
 import time
+
 from behave import given, then, when
 from selenium.common import TimeoutException
 from selenium.webdriver.chrome import webdriver
@@ -27,8 +28,8 @@ def search_bar(context):
 @then('I will Select any 2 products and add to cart and validate the price')
 def select_toy(context):
     # Add the first product to the cart
-    first_product = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@data-image-index="3"]')))
-    first_search_price = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, "(//div[@class='a-section a-spacing-small puis-padding-left-small puis-padding-right-small']//span[@class='a-price-whole'])[2]"))).text
+    first_product = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class, 's-main-slot')]//span[contains(@class, 'a-price-whole')])[1]")))
+    first_search_price = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class, 's-main-slot')]//span[contains(@class, 'a-price-whole')])[1]"))).text
     first_product.click()
     first_detail_price = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[@class='a-price aok-align-center reinventPricePriceToPayMargin priceToPay']//span[@class='a-price-whole']"))).text
     WebDriverWait(context.driver, 10).until(EC.element_to_be_clickable((By.ID, 'add-to-cart-button'))).click()
@@ -56,10 +57,10 @@ def select_toy(context):
 
     # Add the second product to the cart
     second_product = WebDriverWait(context.driver, 20).until(
-        EC.presence_of_element_located((By.XPATH, '//*[@data-image-index="4"]'))
+        EC.presence_of_element_located((By.XPATH, "(//div[contains(@class, 's-main-slot')]//span[contains(@class, 'a-price-whole')])[2]"))
     )
     second_search_price = WebDriverWait(context.driver, 20).until(
-        EC.presence_of_element_located((By.XPATH, "(//span[@class='a-price-whole'])[3]"))
+        EC.presence_of_element_located((By.XPATH, "(//div[contains(@class, 's-main-slot')]//span[contains(@class, 'a-price-whole')])[2]"))
     ).text
 
     second_product.click()
