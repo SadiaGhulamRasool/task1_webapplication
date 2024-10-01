@@ -1,5 +1,4 @@
 import time
-
 from behave import given, then, when
 from selenium.common import TimeoutException
 from selenium.webdriver.chrome import webdriver
